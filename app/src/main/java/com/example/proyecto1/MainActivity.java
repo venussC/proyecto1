@@ -1,6 +1,9 @@
 package com.example.proyecto1;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +21,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 RecyclerView rcvseries;
  serieadaptador serieadaptador;
+
+    ImageView imgfoto;
  ArrayList<series> seriesArrayList = new ArrayList<>();
 
 
@@ -44,6 +49,19 @@ RecyclerView rcvseries;
         rcvseries.setLayoutManager(new LinearLayoutManager(this));
         rcvseries.setAdapter(serieadaptador);
 
+
+imgfoto.findViewById(R.id.imgfoto).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
     }
+});
+
+    }
+
+
+
+
+
 
 }
