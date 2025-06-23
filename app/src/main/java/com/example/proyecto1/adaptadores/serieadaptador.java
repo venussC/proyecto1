@@ -38,8 +38,17 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
         Glide.with(context)
                 .load(listaserie.get(position).getFoto())
                 .into(holder.imgfoto);
+        holder.txttitulo.setText(listaserie.get(position).getTitulo());
         holder.txtuser.setText(listaserie.get(position).getUser());
         holder.txtcontador.setText(String.valueOf(listaserie.get(position).getContador()));
+
+        holder.imgheart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listaserie.get(position).incrementar();
+                holder.txtcontador.setText(String.valueOf(listaserie.get(position).getContador()));
+            }
+        });
     }
 
     @Override
