@@ -5,52 +5,44 @@ public class series {
     private String titulo;
     private String user;
     private int contador;
+    private String trailerUrl;
+
+    // Nuevos campos
+    private String infoPrincipal;
+    private String reparto;
+    private String sinopsis;
+    private String mensaje;
 
     public series() {
     }
 
-    public series(String foto, String titulo, String user, int contador) {
+    public series(String foto, String titulo, String user, int contador, String trailerUrl) {
         this.foto = foto;
         this.titulo = titulo;
         this.user = user;
         this.contador = contador;
+        this.trailerUrl = trailerUrl;
+
     }
 
-    public String getFoto() {
-        return foto;
-    }
+    // Getters y setters para los campos existentes
+    public String getFoto() { return foto; }
+    public void setFoto(String foto) { this.foto = foto; }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
 
-    public String getTitulo() {
-        return titulo;
-    }
+    public String getUser() { return user; }
+    public void setUser(String user) { this.user = user; }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+    public int getContador() { return contador; }
+    public void setContador(int contador) { this.contador = contador; }
 
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
+    public String getTrailerUrl() { return trailerUrl; }
+    public void setTrailerUrl(String trailerUrl) { this.trailerUrl = trailerUrl; }
 
 
-    public int getContador() {
-        return contador;
-    }
-
-    public void setContador(int contador) {
-        this.contador = contador;
-    }
-
-    public void incrementar(){
-        this.contador=this.contador+1;
-
+    public void incrementar() {
+        this.contador = this.contador + 1;
     }
 }
