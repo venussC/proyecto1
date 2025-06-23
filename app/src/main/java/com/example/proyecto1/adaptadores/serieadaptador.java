@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.proyecto1.DetallesSeries;
 import com.example.proyecto1.R;
 import com.example.proyecto1.clases.series;
 
@@ -88,6 +89,22 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
                 Toast.makeText(context, "No hay tráiler disponible", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Click en el item completo para ir a la actividad de detalles
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetallesSeries.class);
+                intent.putExtra("foto", listaserie.get(position).getFoto());
+                intent.putExtra("titulo", listaserie.get(position).getTitulo());
+                intent.putExtra("infoprincipal", listaserie.get(position).getInfoPrincipal());
+                intent.putExtra("reparto", listaserie.get(position).getReparto());
+                intent.putExtra("sipnosis", listaserie.get(position).getSinopsis());
+
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -96,9 +113,9 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgfoto, imguser, imgheart, imgshare;
+        ImageView imgfoto, imguser, imgheart, imgshare, btnTrailer;
         TextView txttitulo, txtuser, txtcontador;
-        Button btnTrailer;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
