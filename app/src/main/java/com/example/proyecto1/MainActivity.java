@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         rcvseries = findViewById(R.id.rcvseries);
 
-        // Tus series con sus tráilers
+
         seriesArrayList.add(new series(
                 "https://estrenosanime.net/uploads/images/nana/Nana.jpg",
                 "Exposerie 2025",
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 "https://www.youtube.com/watch?v=1dldWAM7aD8"
                ));
 
-        // Configuración del RecyclerView con adaptador
+
         serieadaptador = new serieadaptador(this, seriesArrayList);
         rcvseries.setLayoutManager(new LinearLayoutManager(this));
         rcvseries.setAdapter(serieadaptador);

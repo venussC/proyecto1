@@ -7,7 +7,6 @@ public class series {
     private int contador;
     private String trailerUrl;
 
-    // Nuevos campos
     private String infoPrincipal;
     private String reparto;
     private String sinopsis;
@@ -25,7 +24,7 @@ public class series {
 
     }
 
-    // Getters y setters para los campos existentes
+
     public String getFoto() { return foto; }
     public void setFoto(String foto) { this.foto = foto; }
 

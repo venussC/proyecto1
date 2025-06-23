@@ -48,11 +48,9 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
         holder.txtcontador.setText(String.valueOf(serie.getContador()));
 
 
-
-        // Acción para el botón "me gusta" (corazón)
         holder.imgheart.setOnClickListener(v -> {
-            serie.incrementar(); // Incrementa el contador en el objeto series
-            holder.txtcontador.setText(String.valueOf(serie.getContador())); // Actualiza la vista con el nuevo contador
+            serie.incrementar();
+            holder.txtcontador.setText(String.valueOf(serie.getContador()));
         });
         // Acción para el botón "me gusta" (corazón)
         holder.imgshare.setOnClickListener(v -> {
@@ -100,7 +98,7 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgfoto, imguser, imgheart, imgshare;
         TextView txttitulo, txtuser, txtcontador;
-        Button btnTrailer;  // <-- aquí el botón
+        Button btnTrailer;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
