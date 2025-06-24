@@ -1,22 +1,29 @@
 package com.example.proyecto1;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.proyecto1.adaptadores.serieadaptador;
 import com.example.proyecto1.clases.series;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    FloatingActionButton btnGrid;
     RecyclerView rcvseries;
     serieadaptador serieadaptador;
     ArrayList<series> seriesArrayList = new ArrayList<>();
@@ -34,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         rcvseries = findViewById(R.id.rcvseries);
+        btnGrid = findViewById(R.id.btnGrid);
 
         //NANA
         seriesArrayList.add(new series(
@@ -77,20 +85,20 @@ public class MainActivity extends AppCompatActivity {
                 "User",
                 0,
                 "https://www.youtube.com/watch?v=YITf1X6hNls&t=5s",
-                "Serie colombiana de drama y thriller sobre un trasplante de corazón que conecta a dos personas.",
-                "Michel Brown (Simón Duque), Ana Lucía Domínguez (Camila Sanín), Sebastián Martínez (Tomás Duque), María Fernanda Yepes (Samanta Duque)",
-                "Un empresario recibe el corazón de un hombre asesinado y comienza a experimentar visiones y sentimientos que lo llevan a descubrir la verdad sobre el donante y buscar justicia para su muerte, mientras lucha con su nueva identidad."
+                "Drama intenso sobre dos vidas unidas por un trasplante de corazón y los secretos oscuros que lo hicieron posible.",
+                "Michel Brown (Simón Duque), Ana Lucía Domínguez (Camila Duarte), Sebastián Martínez (Zacarías Cienfuegos), Margarita Muñoz (Valeria Duque), Valeria Emiliani (Samantha), Julián Cerati (Tomás)",
+                "Durante su boda, Camila sufre un paro cardíaco y necesita urgentemente un trasplante. Su esposo Zacarías recurre a una red de tráfico de órganos que asesina a Valeria para extraerle el corazón y salvar a Camila. El esposo de Valeria, Simón, investiga el crimen, se infiltra en la mafia y encuentra a Camila… quien lleva el corazón de su esposa y con quien desarrolla una relación inesperada."
         ));
         //Harta
         seriesArrayList.add(new series(
                 "https://mx.web.img2.acsta.net/c_310_420/img/dc/b4/dcb4133ac963afb6d3b6e577e8616d78.jpg",
-                "A Madea Homecoming",
+                "Harta",
                 "User",
                 0,
                 "https://www.youtube.com/watch?v=nZ2ZB2fVxaM",
-                "Comedia familiar de Tyler Perry sobre una reunión familiar llena de sorpresas y secretos.",
-                "Tyler Perry (Madea), Cassi Davis (Aunt Bam), David Mann (Uncle Joe), Tamela Mann (Cora), Brandon Black (Tim)",
-                "Madea se prepara para dar la bienvenida a la familia para la graduación universitaria de su bisnieto, pero secretos familiares amenazan con arruinar la celebración en esta comedia llena de situaciones disparatadas y lecciones de vida."
+                "Drama intenso de Tyler Perry sobre una madre desesperada que enfrenta un sistema injusto para salvar a su hija enferma.",
+                "Taraji P. Henson (Janiyah Wiltkinson), Sherri Shepherd (Nicole Parker), Teyana Taylor (Detective Kay Raymond), Sinbad (Benny), Rockmond Dunbar (Jefe de Wilson), Glynn Turman (jefe de Janiyah)",
+                "Harta cuenta la historia de Janiyah Wiltkinson, una madre soltera que lucha contra dificultades económicas y un sistema de salud deficiente para cuidar a su hija enferma, Aria. Cuando una situación crítica la obliga a tomar medidas desesperadas, Janiyah debe enfrentar las consecuencias de sus actos para proteger a su hija."
         ));
         //El robo del siglo
         seriesArrayList.add(new series(
@@ -100,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 0,
                 "https://www.youtube.com/watch?v=1dldWAM7aD8",
                 "Miniserie colombiana basada en hechos reales sobre el robo más grande de la historia de Colombia.",
-                "Andrés Parra (Chayo), Christian Tappan (Dragon), Waldo Urrego (Ñato), María Adelaida Puerta (Doctora), Marcela Benjumea (Valeria)",
+                "Andrés Parra (Roberto Lozano-Chayo), Christian Tappan (Jairo Molina-El abogado), Waldo Urrego (Gabriel Herrera-el dragón), Marcela Benjumea (Doña K), Juan Sebastián Calero (El sardino)",
                 "Basada en el robo real al Banco de la República de Colombia en 1994, la serie narra cómo un grupo de ladrones ejecutó meticulosamente el atraco más audaz de la historia del país, sustrayendo más de 24 mil millones de pesos sin disparar un solo tiro."
         ));
         //Prison breack
@@ -120,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 "Vincenzo",
                 "User",
                 0,
-                "https://www.youtube.com/watch?v=V9NLRnpaxeo",
+                "https://www.youtube.com/watch?v=_J8tYxYB_YU",
                 "Drama coreano de 2021 sobre un abogado consigliere de la mafia italiana que regresa a Corea del Sur.",
                 "Song Joong-ki (Vincenzo Cassano), Jeon Yeo-been (Hong Cha-young), Ok Taec-yeon (Jang Jun-woo), Kim Yeo-jin (Choi Myung-hee)",
                 "Vincenzo Cassano es un abogado coreano-italiano y consigliere de la mafia que regresa a Corea después de un conflicto dentro de su organización. Usa métodos poco convencionales para lidiar con villanos que no pueden ser castigados por la ley."
@@ -131,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 "All of Us Are Dead",
                 "User",
                 0,
-                "https://www.youtube.com/watch?v=_J8tYxYB_YU",
+                "https://www.youtube.com/watch?v=IN5TD4VRcSM&t=23s",
                 "Serie coreana de zombies de Netflix ambientada en una escuela secundaria durante un brote viral.",
                 "Park Ji-hu (Nam On-jo), Yoon Chan-young (Lee Cheong-san), Cho Yi-hyun (Choi Nam-ra), Park Solomon (Lee Su-hyeok), Im Jae-hyuk (Yang Dae-su)",
                 "Una escuela secundaria se convierte en el epicentro de un brote de virus zombie. Los estudiantes atrapados deben luchar por sus vidas mientras buscan una forma de escapar del edificio infestado o convertirse en uno de los infectados."
@@ -150,7 +158,29 @@ public class MainActivity extends AppCompatActivity {
 
 
         serieadaptador = new serieadaptador(this, seriesArrayList);
-        rcvseries.setLayoutManager(new LinearLayoutManager(this));
+       rcvseries.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         rcvseries.setAdapter(serieadaptador);
+
+        btnGrid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                if (btnGrid instanceof FloatingActionButton) {
+                    FloatingActionButton fab = (FloatingActionButton) btnGrid;
+
+                    btnGrid.setActivated(!btnGrid.isActivated());
+
+                    if (btnGrid.isActivated()) {
+                        rcvseries.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+                        fab.setImageResource(R.drawable.icon_list);
+                    } else {
+                        rcvseries.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                        fab.setImageResource(R.drawable.icon_grid);
+                    }
+                }
+            }
+        });
     }
 }

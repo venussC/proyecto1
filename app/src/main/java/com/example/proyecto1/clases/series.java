@@ -9,6 +9,7 @@ public class series {
     private String reparto;
     private String sinopsis;
     private String mensaje;
+    private boolean yaLeDiLike;
 
     // Constructor vacío
     public series() {
@@ -65,8 +66,24 @@ public class series {
     public String getMensaje() { return mensaje; }
     public void setMensaje(String mensaje) { this.mensaje = mensaje; }
 
-    // Método original
+    //Metodo nuevo
     public void incrementar() {
-        this.contador = this.contador + 1;
+        if (!yaLeDiLike) {
+            this.contador = this.contador + 1;
+            this.yaLeDiLike = true;
+        }
     }
+
+    public void decrementar() {
+        if (yaLeDiLike) {
+            this.contador = this.contador - 1;
+            this.yaLeDiLike = false;
+        }
+    }
+
+    public boolean isLiked() {
+        return yaLeDiLike;
+    }
+
+
 }
