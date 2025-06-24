@@ -41,6 +41,7 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         series serie = listaserie.get(position);
 
         Glide.with(context).load(serie.getFoto()).into(holder.imgfoto);
@@ -48,13 +49,35 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
         holder.txtuser.setText(serie.getUser());
         holder.txtcontador.setText(String.valueOf(serie.getContador()));
 
-
+        // Acción para el botón "me gusta" (corazón)
         holder.imgheart.setOnClickListener(v -> {
             serie.incrementar();
             holder.txtcontador.setText(String.valueOf(serie.getContador()));
         });
-        // Acción para el botón "me gusta" (corazón)
+
+        // Acción para el botón share
         holder.imgshare.setOnClickListener(v -> {
+            String mensaje = "¡Mira esta serie recomendada!\n\n" +
+                    "📺 Título: " + serie.getTitulo() + "\n" +
+                    "🎬 " + serie.getInfoPrincipal() + "\n\n" +
+                    "¡No te la pierdas!";
+
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Serie recomendada: " + serie.getTitulo());
+
+            try {
+                // Crear el selector de apps
+                Intent chooser = Intent.createChooser(shareIntent, "Compartir serie con:");
+                context.startActivity(chooser);
+            } catch (ActivityNotFoundException ex) {
+                Toast.makeText(context, "No hay aplicaciones disponibles para compartir", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+       /* holder.imgshare.setOnClickListener(v -> {
             String mensaje = "¡Mira esta serie recomendada!\n" +
                     "Título: " + serie.getTitulo() + "\n" +
                     "Imagen: " + serie.getFoto();
@@ -70,9 +93,9 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
             } catch (ActivityNotFoundException ex) {
                 Toast.makeText(context, "WhatsApp no está instalado", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
-        // Botón tráiler
+        /* Botón tráiler
         holder.btnTrailer.setOnClickListener(v -> {
             String trailerUrl = serie.getTrailerUrl();
             if(trailerUrl != null && !trailerUrl.isEmpty()) {
@@ -88,7 +111,7 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
             } else {
                 Toast.makeText(context, "No hay tráiler disponible", Toast.LENGTH_SHORT).show();
             }
-        });
+        }); */
 
         // Click en el item completo para ir a la actividad de detalles
 
@@ -101,6 +124,7 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
                 intent.putExtra("infoprincipal", listaserie.get(position).getInfoPrincipal());
                 intent.putExtra("reparto", listaserie.get(position).getReparto());
                 intent.putExtra("sipnosis", listaserie.get(position).getSinopsis());
+                intent.putExtra("trailer", listaserie.get(position).getTrailerUrl());
 
                 context.startActivity(intent);
             }
@@ -113,7 +137,7 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgfoto, imguser, imgheart, imgshare, btnTrailer;
+        ImageView imgfoto, imguser, imgheart, imgshare;
         TextView txttitulo, txtuser, txtcontador;
 
 
@@ -126,7 +150,6 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
             txttitulo = itemView.findViewById(R.id.txttitulo);
             txtuser = itemView.findViewById(R.id.txtuser);
             txtcontador = itemView.findViewById(R.id.txtcontador);
-            btnTrailer = itemView.findViewById(R.id.btn_trailer);
         }
     }
 }

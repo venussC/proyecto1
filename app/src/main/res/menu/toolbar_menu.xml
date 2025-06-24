@@ -3,7 +3,14 @@
 
     <item
         android:id="@+id/action_call"
-        android:icon="@drawable/telefono"
+        android:icon="@drawable/phone"
         android:title="Llamar"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_location"
+        android:icon="@drawable/location"
+        android:title="Lugar"
+        app:showAsAction="always" />
+
 </menu>
