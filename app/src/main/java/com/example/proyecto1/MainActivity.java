@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         //Harta
         seriesArrayList.add(new series(
                 "https://mx.web.img2.acsta.net/c_310_420/img/dc/b4/dcb4133ac963afb6d3b6e577e8616d78.jpg",
-                "A Madea Homecoming",
+                "Harta",
                 "User",
                 0,
                 "https://www.youtube.com/watch?v=nZ2ZB2fVxaM",
