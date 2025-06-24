@@ -1,22 +1,29 @@
 package com.example.proyecto1;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.proyecto1.adaptadores.serieadaptador;
 import com.example.proyecto1.clases.series;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    FloatingActionButton btnGrid;
     RecyclerView rcvseries;
     serieadaptador serieadaptador;
     ArrayList<series> seriesArrayList = new ArrayList<>();
@@ -34,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         rcvseries = findViewById(R.id.rcvseries);
+        btnGrid = findViewById(R.id.btnGrid);
 
         //NANA
         seriesArrayList.add(new series(
@@ -120,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 "Vincenzo",
                 "User",
                 0,
-                "https://www.youtube.com/watch?v=V9NLRnpaxeo",
+                "https://www.youtube.com/watch?v=_J8tYxYB_YU",
                 "Drama coreano de 2021 sobre un abogado consigliere de la mafia italiana que regresa a Corea del Sur.",
                 "Song Joong-ki (Vincenzo Cassano), Jeon Yeo-been (Hong Cha-young), Ok Taec-yeon (Jang Jun-woo), Kim Yeo-jin (Choi Myung-hee)",
                 "Vincenzo Cassano es un abogado coreano-italiano y consigliere de la mafia que regresa a Corea después de un conflicto dentro de su organización. Usa métodos poco convencionales para lidiar con villanos que no pueden ser castigados por la ley."
@@ -131,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 "All of Us Are Dead",
                 "User",
                 0,
-                "https://www.youtube.com/watch?v=_J8tYxYB_YU",
+                "https://www.youtube.com/watch?v=IN5TD4VRcSM&t=23s",
                 "Serie coreana de zombies de Netflix ambientada en una escuela secundaria durante un brote viral.",
                 "Park Ji-hu (Nam On-jo), Yoon Chan-young (Lee Cheong-san), Cho Yi-hyun (Choi Nam-ra), Park Solomon (Lee Su-hyeok), Im Jae-hyuk (Yang Dae-su)",
                 "Una escuela secundaria se convierte en el epicentro de un brote de virus zombie. Los estudiantes atrapados deben luchar por sus vidas mientras buscan una forma de escapar del edificio infestado o convertirse en uno de los infectados."
@@ -150,7 +158,29 @@ public class MainActivity extends AppCompatActivity {
 
 
         serieadaptador = new serieadaptador(this, seriesArrayList);
-        rcvseries.setLayoutManager(new LinearLayoutManager(this));
+       rcvseries.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         rcvseries.setAdapter(serieadaptador);
+
+        btnGrid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                if (btnGrid instanceof FloatingActionButton) {
+                    FloatingActionButton fab = (FloatingActionButton) btnGrid;
+
+                    btnGrid.setActivated(!btnGrid.isActivated());
+
+                    if (btnGrid.isActivated()) {
+                        rcvseries.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+                        fab.setImageResource(R.drawable.icon_list);
+                    } else {
+                        rcvseries.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                        fab.setImageResource(R.drawable.icon_grid);
+                    }
+                }
+            }
+        });
     }
 }

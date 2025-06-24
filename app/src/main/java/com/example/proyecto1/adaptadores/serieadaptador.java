@@ -3,6 +3,7 @@ package com.example.proyecto1.adaptadores;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,10 +51,23 @@ public class serieadaptador extends RecyclerView.Adapter<serieadaptador.ViewHold
         holder.txtcontador.setText(String.valueOf(serie.getContador()));
 
         // Acción para el botón "me gusta" (corazón)
+
         holder.imgheart.setOnClickListener(v -> {
-            serie.incrementar();
+            if (!serie.isLiked()) {
+                serie.incrementar();
+                holder.imgheart.setImageResource(R.drawable.heartrojo);
+                holder.imgheart.setColorFilter(Color.RED); // Cambiar color
+            } else {
+                serie.decrementar();
+                holder.imgheart.clearColorFilter();// Ícono vacío
+            }
             holder.txtcontador.setText(String.valueOf(serie.getContador()));
         });
+
+       /* holder.imgheart.setOnClickListener(v -> {
+            serie.incrementar();
+            holder.txtcontador.setText(String.valueOf(serie.getContador()));
+        });*/
 
         // Acción para el botón share
         holder.imgshare.setOnClickListener(v -> {
