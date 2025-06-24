@@ -59,7 +59,7 @@ public class DetallesSeries extends AppCompatActivity {
 
         mostrarDatos();
 
-        configurarBotonRegresar()
+        configurarBotonRegresar();
     }
 
     private void mostrarDatos() {
